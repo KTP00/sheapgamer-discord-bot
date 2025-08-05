@@ -22,7 +22,7 @@
 1. คลิก Generate token ที่ด้านล่างสุด
 
 1. คัดลอก Token ที่ได้เก็บไว้ในที่ปลอดภัยทันที เพราะจะเห็นได้แค่ครั้งเดียว
-### Login and push image
+### Login and push image (หาข้อมูลเรื่อง Build Multi-Arch for arm64, amd64)
 ```
 docker login ghcr.io -u <github-username> #enter -> input token github
 ```

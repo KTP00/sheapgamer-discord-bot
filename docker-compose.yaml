@@ -3,7 +3,12 @@
 version: '3.8'
 services:
   my-free-game-bot:
-    build: .
+    build:
+      context: .
+      # ระบุ platform ที่ต้องการ build multi-arch
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
     container_name: sheapgamer-discord-bot
     restart: unless-stopped
     # ระบุไฟล์ environment ที่จะใช้งาน
