@@ -1,0 +1,11 @@
+# docker-compose.yml
+# ระบุเวอร์ชันของ docker-compose
+version: '3.8'
+services:
+  my-free-game-bot:
+    build: .
+    container_name: sheapgamer-discord-bot
+    restart: unless-stopped
+    # ระบุไฟล์ environment ที่จะใช้งาน
+    env_file:
+      - .env
