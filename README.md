@@ -1,3 +1,55 @@
+# Build Image and Push to Github Registry
+### GitHub Generate Token(classic)
+1. สร้าง Personal Access Token (PAT)
+คุณต้องใช้ Token นี้แทนรหัสผ่านเพื่อ login เข้า GitHub Registry
+
+1. ไปที่หน้าตั้งค่า Token ของ GitHub: [github.com/settings/tokens](https://github.com/settings/tokens)
+
+1. คลิก Generate new token และเลือก Generate new token (classic)
+
+1. Note: ตั้งชื่อ Token ให้จำง่าย เช่น docker-registry-token
+
+1. Expiration: ตั้งวันหมดอายุตามต้องการ (แนะนำ 30 หรือ 90 วัน)
+
+1. Select scopes: ติ๊กเลือกสิทธิ์ที่จำเป็นดังนี้:
+
+   ✅ write:packages (สำหรับ Push image)
+
+   ✅ read:packages (สำหรับ Pull image)
+
+   ✅ delete:packages (เผื่อไว้สำหรับลบ image)
+
+1. คลิก Generate token ที่ด้านล่างสุด
+
+1. คัดลอก Token ที่ได้เก็บไว้ในที่ปลอดภัยทันที เพราะจะเห็นได้แค่ครั้งเดียว
+### Login and push image
+```
+docker login ghcr.io -u <github-username> #enter -> input token github
+```
+```
+ docker tag sheapgamer-discord-bot-my-free-game-bot ghcr.io/<github-username-lowercase>/sheapgamer-discord-bot-my-free-game-bot:latest
+```
+```
+docker push ghcr.io/<github-username-lowercase>/sheapgamer-discord-bot-my-free-game-bot:latest 
+```
+
+
+# Pull Image
+```
+docker run -d --name my-free-game-bot --env-file "C:\path\to\your\.env" ghcr.io/<github-username-lowercase>/sheapgamer-discord-bot-my-free-game-bot:latest
+```
+หรือ
+```
+docker run -d \
+  --name my-free-game-bot \
+  -e DISCORD_BOT_TOKEN=YOUR_BOT_TOKEN_HERE \
+  -e DISCORD_CHANNEL_ID=YOUR_CHANNEL_ID_HERE \
+  -e RSS_FEED_URL=https://rss.app/feeds/COiTZRnT26oDqrJf.xml \
+  ghcr.io/<github-username-lowercase>/sheapgamer-discord-bot-my-free-game-bot:latest
+
+```
+
+
 # **SheapGamer RSS Feed Discord Bot**
 
 This Discord bot automatically fetches the latest articles from a specified RSS feed and posts them to a designated Discord channel
